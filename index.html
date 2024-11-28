@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Justice Police Zone - Documentos</title>
+  <title>Justice Police Zone</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,7 +39,7 @@
       border-radius: 5px;
       transition: background-color 0.3s;
     }
-    .sidebar button:hover, .sidebar button.active {
+    .sidebar button:hover {
       background-color: #2980b9;
     }
     .document-viewer {
@@ -49,89 +49,69 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
     }
-    .document-viewer textarea {
-      width: 100%;
-      height: 400px;
-      padding: 10px;
+    .document-viewer h2 {
+      margin-top: 0;
+    }
+    .editable {
+      display: inline-block;
+      border-bottom: 1px solid #ccc;
+      padding: 2px 4px;
+      margin: 0 5px;
       font-family: Arial, sans-serif;
       font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      color: #34495e;
+      outline: none;
     }
-    .document-actions {
-      text-align: right;
-      margin-top: 10px;
-    }
-    .document-actions button {
-      background-color: #2ecc71;
-      border: none;
-      color: white;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .document-actions button:hover {
-      background-color: #27ae60;
+    .editable:focus {
+      border-bottom: 1px solid #3498db;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Justice Police Zone - Editar Documentos</h1>
+    <h1>Justice Police Zone</h1>
   </header>
   <div class="container">
     <div class="sidebar">
       <h2>Documentos</h2>
-      <button class="active" onclick="loadDocument('acta')">Acta de inspección</button>
+      <button onclick="loadDocument('inspeccion')">Acta de inspección a lugares</button>
       <button onclick="loadDocument('reporte')">Reporte de iniciación</button>
-      <button onclick="loadDocument('vigilancia')">Vigilancia y seguimiento</button>
     </div>
     <div class="document-viewer">
-      <h2 id="doc-title">Acta de inspección</h2>
-      <textarea id="doc-content"></textarea>
-      <div class="document-actions">
-        <button onclick="downloadDocument()">Descargar documento</button>
+      <h2 id="doc-title">Selecciona un documento</h2>
+      <div id="doc-content">
+        <p>El contenido del documento aparecerá aquí.</p>
       </div>
     </div>
   </div>
+
   <script>
+    // Contenidos simulados
     const documents = {
-      acta: `ACTA DE INSPECCIÓN A LUGARES – FPJ - 9
-Este formato será diligenciado por Policía Judicial
-... (contenido resumido del acta) ...`,
-      reporte: `REPORTE DE INICIACIÓN – FPJ - 1
-Este formato será diligenciado por Policía Judicial
-... (contenido resumido del reporte) ...`,
-      vigilancia: `VIGILANCIA Y SEGUIMIENTO – FPJ - 24
-Este formato será utilizado por Policía Judicial en aquellos casos en que la investigación lo amerite
-... (contenido resumido de vigilancia) ...`
+      inspeccion: {
+        title: "Acta de inspección a lugares",
+        content: `
+          En la fecha <span contenteditable="true" class="editable">_________</span>, se realizó una inspección en el lugar <span contenteditable="true" class="editable">_________</span>. 
+          La inspección fue llevada a cabo por <span contenteditable="true" class="editable">_________</span>.
+        `
+      },
+      reporte: {
+        title: "Reporte de iniciación",
+        content: `
+          El proyecto iniciado el día <span contenteditable="true" class="editable">_________</span> se enfoca en <span contenteditable="true" class="editable">_________</span>.
+          El responsable principal es <span contenteditable="true" class="editable">_________</span>.
+        `
+      }
     };
 
-    function loadDocument(type) {
-      document.getElementById("doc-title").textContent = {
-        acta: "Acta de inspección",
-        reporte: "Reporte de iniciación",
-        vigilancia: "Vigilancia y seguimiento"
-      }[type];
-      document.getElementById("doc-content").value = documents[type];
-      document.querySelectorAll(".sidebar button").forEach(button => button.classList.remove("active"));
-      document.querySelector(`button[onclick="loadDocument('${type}')"]`).classList.add("active");
+    // Función para cargar un documento
+    function loadDocument(key) {
+      const doc = documents[key];
+      if (doc) {
+        document.getElementById("doc-title").textContent = doc.title;
+        document.getElementById("doc-content").innerHTML = doc.content;
+      }
     }
-
-    function downloadDocument() {
-      const content = document.getElementById("doc-content").value;
-      const title = document.getElementById("doc-title").textContent;
-      const blob = new Blob([content], { type: "text/plain" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `${title}.txt`;
-      link.click();
-    }
-
-    // Cargar documento inicial
-    loadDocument('acta');
   </script>
 </body>
 </html>
-
