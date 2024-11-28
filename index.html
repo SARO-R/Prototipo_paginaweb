@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Justice Police Zone</title>
+  <title>Justice Police Forms</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ecf0f1;
+      line-height: 1.6;
     }
     header {
       background-color: #2c3e50;
@@ -24,8 +24,7 @@
     .sidebar {
       background-color: #f1f1f1;
       padding: 20px;
-      width: 200px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      width: 250px;
     }
     .sidebar button {
       background-color: #3498db;
@@ -36,81 +35,175 @@
       margin-bottom: 10px;
       padding: 10px;
       width: 100%;
-      border-radius: 5px;
-      transition: background-color 0.3s;
     }
-    .sidebar button:hover {
+    .sidebar button.active {
       background-color: #2980b9;
     }
     .document-viewer {
       flex-grow: 1;
       padding: 20px;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
+      overflow-y: auto;
+      max-height: 80vh;
     }
-    .document-viewer h2 {
-      margin-top: 0;
+    .document-viewer input, 
+    .document-viewer select, 
+    .document-viewer textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
     }
-    .editable {
-      display: inline-block;
-      border-bottom: 1px solid #ccc;
-      padding: 2px 4px;
-      margin: 0 5px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      color: #34495e;
-      outline: none;
+    .document-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
     }
-    .editable:focus {
-      border-bottom: 1px solid #3498db;
+    .document-actions button {
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 10px 20px;
+      margin-left: 10px;
+    }
+    .section-header {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin-top: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Justice Police Zone</h1>
+    <h1>Justice Police Forms</h1>
   </header>
   <div class="container">
     <div class="sidebar">
-      <h2>Documentos</h2>
-      <button onclick="loadDocument('inspeccion')">Acta de inspección a lugares</button>
-      <button onclick="loadDocument('reporte')">Reporte de iniciación</button>
+      <h2>Documents</h2>
+      <button class="active" onclick="showDocument('acta')">Acta de inspección a lugares.pdf</button>
+      <button onclick="showDocument('reporte')">Reporte de iniciación.pdf</button>
+      <button onclick="showDocument('vigilancia')">Vigilancia y Seguimiento - FPJ-24</button>
     </div>
-    <div class="document-viewer">
-      <h2 id="doc-title">Selecciona un documento</h2>
-      <div id="doc-content">
-        <p>El contenido del documento aparecerá aquí.</p>
+    <div class="document-viewer" id="documentViewer">
+      <!-- ACTA DE INSPECCIÓN Document -->
+      <div id="acta" class="document-form">
+        <h2>ACTA DE INSPECCIÓN A LUGARES – FPJ - 9</h2>
+        <p>Este formato será diligenciado por Policía Judicial</p>
+        <!-- Acta de inspección form fields -->
+      </div>
+
+      <!-- REPORTE DE INICIACIÓN Document -->
+      <div id="reporte" class="document-form" style="display:none;">
+        <h2>REPORTE DE INICIACIÓN – FPJ - 1</h2>
+        <p>Este formato será diligenciado por Policía Judicial</p>
+        <!-- Reporte de iniciación form fields -->
+      </div>
+
+      <!-- VIGILANCIA Y SEGUIMIENTO Document -->
+      <div id="vigilancia" class="document-form" style="display:none;">
+        <h1>VIGILANCIA Y SEGUIMIENTO - FPJ-24 V02</h1>
+        <p>Este formato será utilizado por Policía Judicial en aquellos casos en los que la investigación lo amerite.</p>
+
+        <h2>Información General</h2>
+        <table>
+          <tr>
+            <th>N° y fecha de la orden</th>
+            <td><input type="text" placeholder="N° y fecha de la orden"></td>
+            <th>Autoridad que ordena</th>
+            <td><input type="text" placeholder="Autoridad que ordena"></td>
+          </tr>
+          <tr>
+            <th>Fecha de inicio de la vigilancia y seguimiento</th>
+            <td><input type="date" placeholder="Fecha de inicio"></td>
+            <th>Lugar en el que se inicia la vigilancia y seguimiento</th>
+            <td><input type="text" placeholder="Lugar de inicio"></td>
+          </tr>
+          <tr>
+            <th>Hora de inicio</th>
+            <td><input type="time" placeholder="Hora de inicio"></td>
+          </tr>
+        </table>
+
+        <h2>Registro de Actividades</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Actuación</th>
+              <th>Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" placeholder="Fecha"></td>
+              <td><input type="time" placeholder="Hora"></td>
+              <td><input type="text" placeholder="Actuación"></td>
+              <td><textarea placeholder="Observaciones"></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="date" placeholder="Fecha"></td>
+              <td><input type="time" placeholder="Hora"></td>
+              <td><input type="text" placeholder="Actuación"></td>
+              <td><textarea placeholder="Observaciones"></textarea></td>
+            </tr>
+            <!-- Agrega más filas según sea necesario -->
+          </tbody>
+        </table>
+
+        <h2>Finalización</h2>
+        <table>
+          <tr>
+            <th>Fecha de finalización</th>
+            <td><input type="date" placeholder="Fecha de finalización"></td>
+            <th>Hora</th>
+            <td><input type="time" placeholder="Hora de finalización"></td>
+          </tr>
+          <tr>
+            <th>Responsable</th>
+            <td><input type="text" placeholder="Nombres y apellidos"></td>
+            <th>Firma</th>
+            <td><input type="text" placeholder="Firma del responsable"></td>
+          </tr>
+          <tr>
+            <th>Responsable</th>
+            <td><input type="text" placeholder="Nombres y apellidos"></td>
+            <th>Firma</th>
+            <td><input type="text" placeholder="Firma del responsable"></td>
+          </tr>
+        </table>
+
+        <p>RELEVO SI ____ NO ____</p>
+
+        <p>NOTA: En el cuadro de observaciones debe constar si en la actividad recolectó E.M.P. y E.F. con el respectivo registro de cadena de custodia y los medios de documentación utilizados en la diligencia.</p>
+        <p>En el evento de requerir más espacio se puede ampliar el número de filas cuantas veces sea necesario.</p>
+        <p>El servidor de policía judicial está obligado en todo tiempo a garantizar la reserva de la información, esto conforme a las disposiciones establecidas en la Constitución y la Ley.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Contenidos simulados
-    const documents = {
-      inspeccion: {
-        title: "Acta de inspección a lugares",
-        content: `
-          En la fecha <span contenteditable="true" class="editable">_________</span>, se realizó una inspección en el lugar <span contenteditable="true" class="editable">_________</span>. 
-          La inspección fue llevada a cabo por <span contenteditable="true" class="editable">_________</span>.
-        `
-      },
-      reporte: {
-        title: "Reporte de iniciación",
-        content: `
-          El proyecto iniciado el día <span contenteditable="true" class="editable">_________</span> se enfoca en <span contenteditable="true" class="editable">_________</span>.
-          El responsable principal es <span contenteditable="true" class="editable">_________</span>.
-        `
-      }
-    };
+    function showDocument(type) {
+      // Hide all documents
+      document.getElementById('acta').style.display = 'none';
+      document.getElementById('reporte').style.display = 'none';
+      document.getElementById('vigilancia').style.display = 'none';
+      
+      // Show selected document
+      document.getElementById(type).style.display = 'block';
+      
+      // Update sidebar button styles
+      const buttons = document.querySelectorAll('.sidebar button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
 
-    // Función para cargar un documento
-    function loadDocument(key) {
-      const doc = documents[key];
-      if (doc) {
-        document.getElementById("doc-title").textContent = doc.title;
-        document.getElementById("doc-content").innerHTML = doc.content;
-      }
+    function saveDocument(type) {
+      alert(`Documento ${type} guardado. En una implementación real, esto guardaría los datos.`);
+    }
+
+    function downloadDocument(type) {
+      alert(`Descargando documento ${type}. En una implementación real, esto generaría un PDF.`);
     }
   </script>
 </body>
