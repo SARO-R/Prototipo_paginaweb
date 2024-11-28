@@ -79,7 +79,7 @@
   </header>
   <div class="container">
     <div class="sidebar">
-      <h2>Documents</h2>
+      <h2>Documentos</h2>
       <button class="active" onclick="showDocument('acta')">Acta de inspección a lugares.pdf</button>
       <button onclick="showDocument('reporte')">Reporte de iniciación.pdf</button>
       <button onclick="showDocument('vigilancia')">Vigilancia y Seguimiento - FPJ-24</button>
@@ -89,14 +89,99 @@
       <div id="acta" class="document-form">
         <h2>ACTA DE INSPECCIÓN A LUGARES – FPJ - 9</h2>
         <p>Este formato será diligenciado por Policía Judicial</p>
-        <!-- Acta de inspección form fields -->
+        <p><strong>INSPECCIÓN EN LUGAR DE LOS HECHOS</strong></p>
+        
+        <div class="section-header">Tipo de Inspección</div>
+        <select>
+          <option>Inspección en el lugar de los hechos</option>
+          <option>Inspección en lugar diferente de los hechos</option>
+        </select>
+
+        <div class="section-header">Información de Fecha y Hora</div>
+        <p>En 
+          <input type="text" placeholder="Lugar"> 
+          Siendo las 
+          <input type="time" placeholder="Hora"> 
+          horas del día 
+          <input type="number" min="1" max="31" placeholder="Día"> 
+          del mes 
+          <select>
+            <option>Enero</option>
+            <option>Febrero</option>
+            <!-- Add all months -->
+          </select> 
+          del año 
+          <input type="number" min="2000" max="2099" placeholder="Año">
+        </p>
+
+        <div class="section-header">Servidores de Policía Judicial</div>
+        <textarea placeholder="Nombres de los servidores de Policía Judicial"></textarea>
+        
+        <div class="section-header">Ubicación de la Inspección</div>
+        <input type="text" placeholder="Dirección completa del lugar de inspección">
+
+        <div class="section-header">1. INFORMACIÓN GENERAL</div>
+        <div class="section-header">Zona de Inspección</div>
+        <input type="text" placeholder="Nombre o número de comuna / localidad">
+        <input type="text" placeholder="Barrio">
+        <input type="text" placeholder="Dirección y/o georreferenciación">
+
+        <div class="section-header">Lugar de Inspección</div>
+        <select multiple>
+          <option>Residencia</option>
+          <option>Sitio de recreación</option>
+          <option>Vía pública</option>
+          <option>Sitio de trabajo</option>
+          <option>Recinto Cerrado</option>
+          <option>Objeto Movible</option>
+          <option>Campo abierto</option>
+          <option>Vehículo</option>
+          <option>Despoblado</option>
+          <option>Otros</option>
+        </select>
+
+        <div class="section-header">2. DESCRIPCIÓN DEL LUGAR</div>
+        <textarea placeholder="Método de búsqueda y condiciones medioambientales"></textarea>
+
+        <div class="document-actions">
+          <button onclick="downloadDocument('acta')">Descargar Documento</button>
+          <button onclick="saveDocument('acta')">Guardar Cambios</button>
+        </div>
       </div>
 
       <!-- REPORTE DE INICIACIÓN Document -->
       <div id="reporte" class="document-form" style="display:none;">
         <h2>REPORTE DE INICIACIÓN – FPJ - 1</h2>
         <p>Este formato será diligenciado por Policía Judicial</p>
-        <!-- Reporte de iniciación form fields -->
+
+        <div class="section-header">Información de Ubicación</div>
+        <input type="text" placeholder="Departamento">
+        <input type="text" placeholder="Municipio">
+        <input type="date" placeholder="Fecha">
+        <input type="time" placeholder="Hora">
+
+        <div class="section-header">1. SÍNTESIS DE LOS HECHOS</div>
+        <input type="date" placeholder="Fecha de los hechos">
+        <input type="time" placeholder="Hora de los hechos">
+
+        <div class="section-header">Ubicación de los Hechos</div>
+        <input type="text" placeholder="Departamento">
+        <input type="text" placeholder="Municipio">
+        <select>
+          <option>Zona Urbana</option>
+          <option>Zona Rural</option>
+        </select>
+        <textarea placeholder="Síntesis cronológica y concreta de los hechos"></textarea>
+
+        <div class="section-header">2. AUTORIDAD QUE CONOCE LA INVESTIGACIÓN</div>
+        <input type="text" placeholder="Fiscalía / Institución">
+        <input type="text" placeholder="Dirección">
+        <input type="text" placeholder="Delito / Conducta">
+
+        <div className="document-actions">
+          <button onclick="downloadDocument('reporte')">Descargar Documento</button>
+          <button onclick="saveDocument('reporte')">Guardar Cambios</button>
+        </div>
       </div>
 
       <!-- VIGILANCIA Y SEGUIMIENTO Document -->
