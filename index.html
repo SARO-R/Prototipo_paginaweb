@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Justice Police Forms</title>
+  <title>Justice Police Zone</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -75,14 +75,13 @@
 </head>
 <body>
   <header>
-    <h1>Justice Police Forms</h1>
+    <h1>Justice Police Zone</h1>
   </header>
   <div class="container">
     <div class="sidebar">
       <h2>Documentos</h2>
       <button class="active" onclick="showDocument('acta')">Acta de inspección a lugares.pdf</button>
       <button onclick="showDocument('reporte')">Reporte de iniciación.pdf</button>
-      <button onclick="showDocument('vigilancia')">Vigilancia y Seguimiento - FPJ-24</button>
     </div>
     <div class="document-viewer" id="documentViewer">
       <!-- ACTA DE INSPECCIÓN Document -->
@@ -183,87 +182,6 @@
           <button onclick="saveDocument('reporte')">Guardar Cambios</button>
         </div>
       </div>
-
-      <!-- VIGILANCIA Y SEGUIMIENTO Document -->
-      <div id="vigilancia" class="document-form" style="display:none;">
-        <h1>VIGILANCIA Y SEGUIMIENTO - FPJ-24 V02</h1>
-        <p>Este formato será utilizado por Policía Judicial en aquellos casos en los que la investigación lo amerite.</p>
-
-        <h2>Información General</h2>
-        <table>
-          <tr>
-            <th>N° y fecha de la orden</th>
-            <td><input type="text" placeholder="N° y fecha de la orden"></td>
-            <th>Autoridad que ordena</th>
-            <td><input type="text" placeholder="Autoridad que ordena"></td>
-          </tr>
-          <tr>
-            <th>Fecha de inicio de la vigilancia y seguimiento</th>
-            <td><input type="date" placeholder="Fecha de inicio"></td>
-            <th>Lugar en el que se inicia la vigilancia y seguimiento</th>
-            <td><input type="text" placeholder="Lugar de inicio"></td>
-          </tr>
-          <tr>
-            <th>Hora de inicio</th>
-            <td><input type="time" placeholder="Hora de inicio"></td>
-          </tr>
-        </table>
-
-        <h2>Registro de Actividades</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Actuación</th>
-              <th>Observaciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="date" placeholder="Fecha"></td>
-              <td><input type="time" placeholder="Hora"></td>
-              <td><input type="text" placeholder="Actuación"></td>
-              <td><textarea placeholder="Observaciones"></textarea></td>
-            </tr>
-            <tr>
-              <td><input type="date" placeholder="Fecha"></td>
-              <td><input type="time" placeholder="Hora"></td>
-              <td><input type="text" placeholder="Actuación"></td>
-              <td><textarea placeholder="Observaciones"></textarea></td>
-            </tr>
-            <!-- Agrega más filas según sea necesario -->
-          </tbody>
-        </table>
-
-        <h2>Finalización</h2>
-        <table>
-          <tr>
-            <th>Fecha de finalización</th>
-            <td><input type="date" placeholder="Fecha de finalización"></td>
-            <th>Hora</th>
-            <td><input type="time" placeholder="Hora de finalización"></td>
-          </tr>
-          <tr>
-            <th>Responsable</th>
-            <td><input type="text" placeholder="Nombres y apellidos"></td>
-            <th>Firma</th>
-            <td><input type="text" placeholder="Firma del responsable"></td>
-          </tr>
-          <tr>
-            <th>Responsable</th>
-            <td><input type="text" placeholder="Nombres y apellidos"></td>
-            <th>Firma</th>
-            <td><input type="text" placeholder="Firma del responsable"></td>
-          </tr>
-        </table>
-
-        <p>RELEVO SI ____ NO ____</p>
-
-        <p>NOTA: En el cuadro de observaciones debe constar si en la actividad recolectó E.M.P. y E.F. con el respectivo registro de cadena de custodia y los medios de documentación utilizados en la diligencia.</p>
-        <p>En el evento de requerir más espacio se puede ampliar el número de filas cuantas veces sea necesario.</p>
-        <p>El servidor de policía judicial está obligado en todo tiempo a garantizar la reserva de la información, esto conforme a las disposiciones establecidas en la Constitución y la Ley.</p>
-      </div>
     </div>
   </div>
 
@@ -272,7 +190,6 @@
       // Hide all documents
       document.getElementById('acta').style.display = 'none';
       document.getElementById('reporte').style.display = 'none';
-      document.getElementById('vigilancia').style.display = 'none';
       
       // Show selected document
       document.getElementById(type).style.display = 'block';
